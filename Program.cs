@@ -4,8 +4,10 @@ using ExpenseTrackerAPI.Contexts;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ExpenseTrackerContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("ExpenseTrackerContext")));
+builder.Services.AddDbContext<ExpenseTrackerContext>(
+    o => o.UseNpgsql(builder.Configuration.GetConnectionString("ExpenseTrackerContext"))
+);
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(

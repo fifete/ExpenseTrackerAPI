@@ -13,5 +13,6 @@ namespace ExpenseTrackerAPI.Models
         public string? Date { get; set; }
         public string? Time { get; set; }
 
+        public Category? Category { get; set; }
     }
 }

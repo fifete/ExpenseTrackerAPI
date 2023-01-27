@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Net.Mail;
 
 namespace ExpenseTrackerAPI.Models
 {
@@ -11,5 +10,6 @@ namespace ExpenseTrackerAPI.Models
         public string? Password { get; set; }
         public string? Username { get; set; }
 
+        public ICollection<Category>? Categories { get; set; }
     }
 }

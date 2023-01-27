@@ -18,5 +18,9 @@ namespace ExpenseTrackerAPI.Models
         public string? Name { get; set; }
         public string? Color { get; set; }
         public string? Emoji { get; set; }
+
+        public ICollection<Expense>? Expenses { get; set; }
+        public User? User { get; set; }
+
     }
 }

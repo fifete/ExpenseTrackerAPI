@@ -21,7 +21,6 @@ namespace ExpenseTrackerAPI.Controllers
             _context = context;
         }
 
-        //================= NO ===========//
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
@@ -29,7 +28,6 @@ namespace ExpenseTrackerAPI.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        //================= NO ===========//
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
@@ -43,7 +41,7 @@ namespace ExpenseTrackerAPI.Controllers
 
             return user;
         }
-        //========== No========== talvez PATCH/
+
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -87,7 +85,6 @@ namespace ExpenseTrackerAPI.Controllers
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // ====== NO ===================//
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)

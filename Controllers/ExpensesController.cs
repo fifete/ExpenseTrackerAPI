@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ExpenseTrackerAPI.Contexts;
 using ExpenseTrackerAPI.Models;
-using static ExpenseTrackerAPI.Controllers.CategoriesController;
 
 namespace ExpenseTrackerAPI.Controllers
 {
@@ -21,18 +20,15 @@ namespace ExpenseTrackerAPI.Controllers
         {
             _context = context;
         }
-        //======== MOdify: Expenses by category =========/
+
         // GET: api/Expenses
-        // Capturing variable 'category' that hasn't been  captured before requires restarting the application
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Expense>>> GetExpenses(int categoryId)
         {
             var expenses = _context.Expenses.AsQueryable();
-            Console.WriteLine(categoryId.ToString());
 
             if (!string.IsNullOrEmpty(categoryId.ToString()))
             {
-                Console.WriteLine(categoryId);
                 expenses = expenses.Where(e => e.CategoryId == categoryId);
             }
             return await expenses.ToListAsync();

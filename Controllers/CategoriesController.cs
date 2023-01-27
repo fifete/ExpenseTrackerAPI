@@ -22,11 +22,18 @@ namespace ExpenseTrackerAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Categories
+        // GET: api/Categories?UserIdTemp
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories(string UserIdTemp)
         {
-            return await _context.Categories.ToListAsync();
+            var categories = await _context.Categories
+            .FromSqlInterpolated($"SELECT * FROM Categories WHERE user_id_temp = {UserIdTemp} OR user_id_temp = 'DEFAULT'")
+            .ToListAsync();
+
+            if (categories == null)
+                return NotFound();
+
+            return Ok(categories);
         }
 
         // GET: api/Categories/5
